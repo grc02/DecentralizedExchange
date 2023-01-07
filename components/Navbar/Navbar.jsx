@@ -26,6 +26,7 @@ const Navbar = () => {
   return (
     <div className={Style.Navbar}>
       <div className={Style.NavbarBox}>
+        {/* //Left SECTION */}
         <div className={Style.NavbarBoxLeft}>
           {/* // Logo Image */}
           <div className={Style.NavbarBoxLeftImage}>
@@ -40,8 +41,31 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-        <div className={Style.NavbarBoxRight}>Right</div>
+        {/* //Middle SECTION */}
+        <div className={Style.NavbarBoxMiddle}>
+          <div className={Style.NavbarBoxMiddleSearch}>
+            <div className={Style.NavbarBoxMiddleSearchImage}>
+              <Image src={images.search} alt="search" width={25} height={25} />
+            </div>
+            {/* //INPUT SECTION */}
+            <input type="text" placeholder="Search Token" />
+          </div>
+        </div>
+        <div className={Style.NavbarBoxRight}>
+          <div className={Style.NavbarBoxRightImage}>
+            <Image src={images.ether} alt="network" width={30} height={30} />
+          </div>
+          <p>Network name</p>
+          <button onClick={() => {}}>Address</button>
+          {openModel && (
+            <Model setOpenModel={setOpenModel} connectWallet="Connect" />
+          )}
+        </div>
       </div>
+      {/* //TOKENLIST COMPONENT */}
+      {openTokenBox && (
+        <TokenList setOpenTokenBox={setOpenTokenBox} tokenData="Data" />
+      )}
     </div>
   );
 };
