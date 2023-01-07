@@ -51,11 +51,14 @@ const Navbar = () => {
             <input type="text" placeholder="Search Token" />
           </div>
         </div>
+        {/* //Right SECTION */}
         <div className={Style.NavbarBoxRight}>
-          <div className={Style.NavbarBoxRightImage}>
-            <Image src={images.ether} alt="network" width={30} height={30} />
+          <div className={Style.NavbarBoxRightBox}>
+            <div className={Style.NavbarBoxRightImage}>
+              <Image src={images.ether} alt="network" width={30} height={30} />
+            </div>
+            <p>Network name</p>
           </div>
-          <p>Network name</p>
           <button onClick={() => {}}>Address</button>
           {openModel && (
             <Model setOpenModel={setOpenModel} connectWallet="Connect" />
