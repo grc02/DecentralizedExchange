@@ -5,7 +5,7 @@ import Style from "./Toggle.module.css";
 const Toggle = ({ label }) => {
   return (
     <div className={Style.Toggle}>
-      <div className={Style.ToggleSwitch}>
+      <div className={Style.ToggleSwitchBox}>
         <input
           type="checkbox"
           className={Style.ToggleCheckbox}
