@@ -20,6 +20,12 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.HeroSectionBoxHeader h1 {
+  color: #cff80b;
+  font-size: 2.2rem;
+}
+
 .HeroSectionBoxInput {
   display: flex;
   align-items: center;

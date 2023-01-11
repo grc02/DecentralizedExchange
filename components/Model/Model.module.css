@@ -22,10 +22,6 @@
   justify-content: space-between;
 }
 
-.ModelBoxHeader p {
-  font-size: 1.2rem;
-}
-
 .ModelBoxWallet p {
   background-color: #cff80b;
   padding: 1rem;

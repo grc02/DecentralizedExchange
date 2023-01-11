@@ -34,15 +34,15 @@ const Token = ({ setOpenSetting }) => {
           <Image src={images.question} alt="lock" width={30} height={30} />
         </p>
 
-        <div className={Style.TokenBoxInput}>
-          <button>Minutes</button>
-          <input type="text" placeholder="10" />
+        <div className={Style.TokenBoxToggle}>
+          <Toggle label="No" />
         </div>
 
         <br />
 
-        <div className={Style.TokenBoxToggle}>
-          <Toggle />
+        <div className={Style.TokenBoxInput}>
+          <button>Minutes</button>
+          <input type="text" placeholder="10" />
         </div>
       </div>
     </div>

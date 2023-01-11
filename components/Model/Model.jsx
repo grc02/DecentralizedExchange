@@ -11,7 +11,7 @@ const Model = ({ setOpenModel, connectWallet }) => {
     <div className={Style.Model}>
       <div className={Style.ModelBox}>
         <div className={Style.ModelBoxHeader}>
-          <p>Connect wallet</p>
+          <h2>Connect wallet</h2>
           <div className={Style.ModelBoxHeaderImage}>
             <Image
               src={images.close}

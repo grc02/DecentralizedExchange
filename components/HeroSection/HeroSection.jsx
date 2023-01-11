@@ -25,7 +25,7 @@ const HeroSection = ({ accounts, tokenData }) => {
     <div className={Style.HeroSection}>
       <div className={Style.HeroSectionBox}>
         <div className={Style.HeroSectionBoxHeader}>
-          <p>Swap</p>
+          <h1>Swap</h1>
           <div className={Style.HeroSectionBoxHeaderImage}>
             <Image
               src={images.close}
@@ -55,7 +55,7 @@ const HeroSection = ({ accounts, tokenData }) => {
         {/*// TOKEN 2 */}
         <div className={Style.HeroSectionBoxInput}>
           <input type="text" placeholder="0" />
-          <button onClick={() => setOpenToken(true)}>
+          <button onClick={() => setOpenTokensTwo(true)}>
             <Image
               src={tokenTwo.image || images.etherlogo}
               alt="logo"
