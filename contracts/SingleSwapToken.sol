@@ -5,7 +5,7 @@ pragma abicoder v2;
 import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
-contract SwapToken {
+contract SingleSwapToken {
     ISwapRouter public constant SWAP_ROUTER =
         ISwapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);
     address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
@@ -35,5 +35,46 @@ contract SwapToken {
                 sqrtPriceLimitX96: 0
             });
         amountOut = SWAP_ROUTER.exactInputSingle(params);
+    }
+
+    function swapExactInputSingle(
+        uint amountOut,
+        uint amountInMaximum
+    ) external returns (uint amountIn) {
+        TransferHelper.safeTransferFrom(
+            WETH9,
+            msg.sender,
+            address(this),
+            amountInMaximum
+        );
+
+        TransferHelper.safeApprove(
+            WETH9,
+            address(SWAP_ROUTER),
+            amountInMaximum
+        );
+
+        ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter
+            .ExactOutputSingleParams({
+                tokenIn: WETH9,
+                tokenOut: DAI,
+                fee: 3000,
+                recipient: msg.sender,
+                deadline: block.timestamp,
+                amountOut: amountOut,
+                amountInMaximum: amountInMaximum,
+                sqrtPriceLimitX96: 0
+            });
+
+        amountIn = SWAP_ROUTER.exactOutputSingle(params);
+
+        if (amountIn < amountInMaximum) {
+            TransferHelper.safeApprove(WETH9, address(SWAP_ROUTER), amountIn);
+            TransferHelper.safeTransfer(
+                WETH9,
+                msg.sender,
+                amountInMaximum - amountIn
+            );
+        }
     }
 }
