@@ -37,7 +37,7 @@ contract SingleSwapToken {
         amountOut = SWAP_ROUTER.exactInputSingle(params);
     }
 
-    function swapExactInputSingle(
+    function swapExactOutputSingle(
         uint amountOut,
         uint amountInMaximum
     ) external returns (uint amountIn) {
