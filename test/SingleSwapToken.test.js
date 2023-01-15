@@ -20,36 +20,44 @@ describe("SingleSwapToken", function () {
     usdc = await ethers.getContractAt("IERC20", USDC);
   });
 
-  it("Tests if the 'swapExactInputSingle' works as intended", async function () {
-    const amountIn = 10n ** 18n;
+  describe("swapExactInputSingle", function () {
+    it("Tests if the 'swapExactInputSingle' works as intended", async function () {
+      const amountIn = 10n ** 18n;
 
-    await weth.deposit({ value: amountIn });
-    await weth.approve(singleSwapToken.address, amountIn);
+      await weth.deposit({ value: amountIn });
+      await weth.approve(singleSwapToken.address, amountIn);
 
-    await singleSwapToken.swapExactInputSingle(amountIn);
-    console.log(
-      "DAI balance of the account №1 = ",
-      ethers.utils.formatEther(await dai.balanceOf(accounts[0].address))
-    );
-    console.log(ethers.utils.formatEther(await accounts[0].getBalance()));
+      await singleSwapToken.swapExactInputSingle(amountIn);
+      console.log(
+        "DAI balance of the account №1 = ",
+        ethers.utils.formatEther(await dai.balanceOf(accounts[0].address))
+      );
+      console.log(ethers.utils.formatEther(await accounts[0].getBalance()));
+    });
   });
 
-  it("Tests if the 'swapExactOutputSingle' works as intended", async function () {
-    // Swap input should be a maximum of 1 ETH and should swap it for DAI, where the desired amount is 1,000
-    const wethAmountInMax = 10n ** 18n;
-    const daiAmountOut = 100n * 10n ** 18n;
+  describe("swapExactOutputSingle", function () {
+    it("Tests if the 'swapExactOutputSingle' works as intended", async function () {
+      // Swap input should be a maximum of 1 ETH and should swap it for DAI, where the desired amount is 1,000
+      const wethAmountInMax = 10n ** 18n;
+      const daiAmountOut = 100n * 10n ** 18n;
 
-    await accounts[0].sendTransaction({
-      to: weth.address,
-      value: wethAmountInMax,
+      await accounts[1].sendTransaction({
+        value: wethAmountInMax,
+        to: weth.address,
+      });
+      await weth
+        .connect(accounts[1])
+        .approve(singleSwapToken.address, wethAmountInMax);
+
+      await singleSwapToken
+        .connect(accounts[1])
+        .swapExactOutputSingle(daiAmountOut, wethAmountInMax);
+
+      console.log(
+        "DAI balance of the account №1 = ",
+        ethers.utils.formatEther(await dai.balanceOf(accounts[1].address))
+      );
     });
-    await weth.approve(singleSwapToken.address, wethAmountInMax);
-
-    await singleSwapToken.swapExactOutputSingle(daiAmountOut, wethAmountInMax);
-
-    console.log(
-      "DAI balance of the account №1 = ",
-      ethers.utils.formatEther(await dai.balanceOf(accounts[0].address))
-    );
   });
 });
