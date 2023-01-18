@@ -42,18 +42,95 @@ export const connectWallet = async () => {
   }
 };
 
-//BOO TOKEN FETCHING
-export const fetchBooContract = (signerOrProvider) =>
-  new ethers.Contract(BooTokenAddress, BooTokenABI, signerOrProvider);
+//One TOKEN FETCHING
+export const fetchOneContract = (signerOrProvider) =>
+  new ethers.Contract(OneTokenAddress, OneTokenABI, signerOrProvider);
 
-//CONNECTING With BOO TOKEN CONTRACT
-export const connectingWithBooToken = async () => {
+//CONNECTING With One TOKEN CONTRACT
+export const connectingWithOneToken = async () => {
   try {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = fetchBooContract(signer);
+    const contract = fetchOneContract(signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Two TOKEN FETCHING
+export const fetchTwoContract = (signerOrProvider) =>
+  new ethers.Contract(TwoTokenAddress, TwoTokenABI, signerOrProvider);
+
+//CONNECTING With Two TOKEN CONTRACT
+export const connectingWithTwoToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchTwoContract(signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//SingleSwap TOKEN FETCHING
+export const fetchSingleSwapContract = (signerOrProvider) =>
+  new ethers.Contract(
+    SingleSwapTokenAddress,
+    SingleSwapTokenABI,
+    signerOrProvider
+  );
+
+//CONNECTING With SingleSwap TOKEN CONTRACT
+export const connectingWithSingleSwapToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchSingleSwapContract(signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//IWETH TOKEN FETCHING
+export const fetchIWTHContract = (signerOrProvider) =>
+  new ethers.Contract(IWETHAddress, IWETHABI, signerOrProvider);
+
+//CONNECTING With IWETH TOKEN CONTRACT
+export const connectingWithIWTHToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchIWTHContract(signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//DAI TOKEN FETCHING
+const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+export const fetchDAIContract = (signerOrProvider) =>
+  new ethers.Contract(DAIAddress, IWETHABI, signerOrProvider);
+
+//CONNECTING With DAI TOKEN CONTRACT
+export const connectingWithDAIToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchDAIContract(signer);
     return contract;
   } catch (error) {
     console.log(error);
