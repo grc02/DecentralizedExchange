@@ -17,5 +17,5 @@ export const SingleSwapTokenABI = SingleSwapToken.abi;
 export const SwapMultiHopAddress = "0x6732128F9cc0c4344b2d4DC6285BCd516b7E59E6";
 export const SwapMultiHopABI = SwapMultiHop.abi;
 
-export const IWETHAddress = "0x15Ff10fCc8A1a50bFbE07847A22664801eA79E0f";
+export const IWETHAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 export const IWETHABI = IWETH.abi;
