@@ -101,17 +101,17 @@ export const connectingWithSingleSwapToken = async () => {
 };
 
 //IWETH TOKEN FETCHING
-export const fetchIWTHContract = (signerOrProvider) =>
+export const fetchIWETHContract = (signerOrProvider) =>
   new ethers.Contract(IWETHAddress, IWETHABI, signerOrProvider);
 
 //CONNECTING With IWETH TOKEN CONTRACT
-export const connectingWithIWTHToken = async () => {
+export const connectingWithIWETHToken = async () => {
   try {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = fetchIWTHContract(signer);
+    const contract = fetchIWETHContract(signer);
     return contract;
   } catch (error) {
     console.log(error);
