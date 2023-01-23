@@ -28,16 +28,15 @@ export const SwapTokenContextProvider = ({ children }) => {
   const addToken = [
     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH9
     "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
+    "0xbe18A1B61ceaF59aEB6A9bC81AB4FB87D56Ba167", // ONE
+    "0x25C0a2F0A077F537Bd11897F04946794c2f6f1Ef", // TWO
     // "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
-    // "0x5FbDB2315678afecb367f032d93F642f64180aa3", // ONE
-    // "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512", // TWO
   ];
 
   const fetchingData = async () => {
     try {
       const userAccount = await checkIfWalletConnected();
       setAccount(userAccount);
-      console.log(userAccount);
 
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
@@ -48,8 +47,8 @@ export const SwapTokenContextProvider = ({ children }) => {
       const ethValue = ethers.utils.formatEther(convertBal);
       setEther(ethValue);
 
-      const newtork = await provider.getNetwork();
-      setNetworkConnection(newtork.name);
+      const network = await provider.getNetwork();
+      setNetworkConnection(network.name);
 
       addToken.map(async (el, i) => {
         const contract = new ethers.Contract(el, ERC20, provider);
@@ -60,8 +59,6 @@ export const SwapTokenContextProvider = ({ children }) => {
 
         const symbol = await contract.symbol();
         const name = await contract.name();
-
-        console.log(symbol, name);
 
         tokenData.push({
           name: name,
@@ -78,8 +75,6 @@ export const SwapTokenContextProvider = ({ children }) => {
       const daiContract = await connectingWithDAIToken();
       const daiBalance = await daiContract.balanceOf(userAccount);
       setDai(ethers.utils.formatEther(daiBalance));
-
-      console.log(weth9, dai);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +85,15 @@ export const SwapTokenContextProvider = ({ children }) => {
   }, []);
   return (
     <SwapTokenContext.Provider
-      value={{ account, weth9, dai, networkConnection, ether }}
+      value={{
+        account,
+        weth9,
+        dai,
+        networkConnection,
+        connectWallet,
+        ether,
+        tokenData,
+      }}
     >
       {children}
     </SwapTokenContext.Provider>
