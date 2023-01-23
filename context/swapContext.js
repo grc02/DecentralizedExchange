@@ -37,6 +37,7 @@ export const SwapTokenContextProvider = ({ children }) => {
     try {
       const userAccount = await checkIfWalletConnected();
       setAccount(userAccount);
+      console.log(userAccount);
 
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
@@ -60,7 +61,6 @@ export const SwapTokenContextProvider = ({ children }) => {
         const symbol = await contract.symbol();
         const name = await contract.name();
 
-        console.log(userAccount);
         console.log(symbol, name);
 
         tokenData.push({
@@ -90,7 +90,7 @@ export const SwapTokenContextProvider = ({ children }) => {
   }, []);
   return (
     <SwapTokenContext.Provider
-      value={(account, weth9, dai, networkConnection, ether)}
+      value={{ account, weth9, dai, networkConnection, ether }}
     >
       {children}
     </SwapTokenContext.Provider>
