@@ -69,17 +69,17 @@ export const SwapTokenContextProvider = ({ children }) => {
           tokenBalance: convertTokenBal,
           tokenAddress: el,
         });
-
-        const wethContract = await connectingWithIWETHToken();
-        const wethBalance = await wethContract.balanceOf(userAccount);
-        setWeth9(ethers.utils.formatEther(wethBalance));
-
-        const daiContract = await connectingWithDAIToken();
-        const daiBalance = await daiContract.balanceOf(userAccount);
-        setDai(ethers.utils.formatEther(daiBalance));
-
-        console.log(weth9, dai);
       });
+
+      const wethContract = await connectingWithIWETHToken();
+      const wethBalance = await wethContract.balanceOf(userAccount);
+      setWeth9(ethers.utils.formatEther(wethBalance));
+
+      const daiContract = await connectingWithDAIToken();
+      const daiBalance = await daiContract.balanceOf(userAccount);
+      setDai(ethers.utils.formatEther(daiBalance));
+
+      console.log(weth9, dai);
     } catch (error) {
       console.log(error);
     }
