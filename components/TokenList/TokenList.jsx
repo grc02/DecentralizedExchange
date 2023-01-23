@@ -5,7 +5,11 @@ import Style from "./TokenList.module.css";
 import images from "../../assets";
 
 const TokenList = ({ setOpenTokenBox, tokenData }) => {
-  const data = [1, 2, 3, 4, 5, 6];
+  let tokenList = [];
+  for (let i = 0; i < tokenData.length / 2; i++) {
+    tokenList.push(tokenData[i]);
+  }
+
   return (
     <div className={Style.TokenList}>
       <p
@@ -18,12 +22,12 @@ const TokenList = ({ setOpenTokenBox, tokenData }) => {
       </p>
       <div className={Style.TokenListTitle}>Your Token List</div>
 
-      {data.map((el, i) => (
+      {tokenList.map((el, i) => (
         <div className={Style.TokenListBox}>
           <div className={Style.TokenListBoxInfo}>
-            <p className={Style.TokenListBoxInfoSymbol}>SYMBOL</p>
+            <p className={Style.TokenListBoxInfoSymbol}>{el.symbol}</p>
             <p>
-              <span>27</span> TOKEN
+              <span>{el.tokenBalance.slice(0, 9)}</span> {el.name}
             </p>
           </div>
         </div>
