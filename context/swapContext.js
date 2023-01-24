@@ -83,6 +83,34 @@ export const SwapTokenContextProvider = ({ children }) => {
   useEffect(() => {
     fetchingData();
   }, []);
+
+  const singleSwapToken = async () => {
+    try {
+      let singleSwapToken, weth, dai;
+
+      singleSwapToken = await connectingWithSingleSwapToken();
+      weth = await connectingWithIWETHToken();
+      dai = await connectingWithDAIToken();
+
+      const amountIn = 10n ** 18n;
+      await weth.deposit({ value: amountIn });
+      await weth.approve(singleSwapToken.address, amountIn);
+      //SWAP
+      await singleSwapToken.swapExactInputSingle(amountIn, {
+        gasLimit: 300000,
+      });
+
+      const balance = await dai.balanceOf(account);
+      const transferAmount = BigNumber.from(balance).toString();
+      const ethValue = ethers.utils.formatEther(transferAmount);
+      setDai(ethValue);
+
+      console.log(`DAI balance: ${ethValue}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SwapTokenContext.Provider
       value={{
@@ -91,6 +119,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         dai,
         networkConnection,
         connectWallet,
+        singleSwapToken,
         ether,
         tokenData,
       }}
