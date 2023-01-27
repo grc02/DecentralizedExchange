@@ -29,8 +29,47 @@ contract LiquidityExamples is IERC721Receiver {
     }
 
     /// @dev deposits[tokenId] => Deposit
-    mapping(uint => Deposit) public deposits;
+    mapping(uint => Deposit) public s_deposits;
 
     // Store token id used in this example
-    uint public tokenId;
+    uint public s_tokenId;
+
+    // Implementing `onERC721Received` so this contract can receive custody of erc721 tokens
+    function onERC721Received(
+        address operator,
+        address,
+        uint _tokenId,
+        bytes calldata
+    ) external override returns (bytes4) {
+        _createDeposit(operator, _tokenId);
+        return this.onERC721Received.selector;
+    }
+
+    function _createDeposit(address owner, uint tokenId) internal {
+        (
+            ,
+            ,
+            address token0,
+            address token1,
+            ,
+            ,
+            ,
+            uint128 liquidity,
+            ,
+            ,
+            ,
+
+        ) = nonfungiblePositionManager.positions(tokenId);
+        // set the owner and data for position
+        // operator is msg.sender
+        s_deposits[tokenId] = Deposit({
+            owner: owner,
+            liquidity: liquidity,
+            token0: token0,
+            token1: token1
+        });
+        console.log("Token id", _tokenId);
+        console.log("Liquidity", liquidity);
+        s_tokenId = _tokenId;
+    }
 }
