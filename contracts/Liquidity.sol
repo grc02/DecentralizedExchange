@@ -38,10 +38,10 @@ contract LiquidityExamples is IERC721Receiver {
     function onERC721Received(
         address operator,
         address,
-        uint _tokenId,
+        uint tokenId,
         bytes calldata
     ) external override returns (bytes4) {
-        _createDeposit(operator, _tokenId);
+        _createDeposit(operator, tokenId);
         return this.onERC721Received.selector;
     }
 
@@ -68,8 +68,8 @@ contract LiquidityExamples is IERC721Receiver {
             token0: token0,
             token1: token1
         });
-        console.log("Token id", _tokenId);
+        console.log("Token id", tokenId);
         console.log("Liquidity", liquidity);
-        s_tokenId = _tokenId;
+        s_tokenId = tokenId;
     }
 }
