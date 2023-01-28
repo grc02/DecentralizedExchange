@@ -10,7 +10,7 @@ import "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.s
 import "@uniswap/v3-periphery/contracts/base/LiquidityManagement.sol";
 import "hardhat/console.sol";
 
-contract LiquidityExamples is IERC721Receiver {
+contract Liquidity is IERC721Receiver {
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
@@ -147,7 +147,7 @@ contract LiquidityExamples is IERC721Receiver {
         // alternatively can set recipient to msg.sender and avoid another transaction in `sendToOwner`
         INonfungiblePositionManager.CollectParams
             memory params = INonfungiblePositionManager.CollectParams({
-                tokenId: tokenId,
+                tokenId: s_tokenId,
                 recipient: address(this),
                 amount0Max: type(uint128).max,
                 amount1Max: type(uint128).max
