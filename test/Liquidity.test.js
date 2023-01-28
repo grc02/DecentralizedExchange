@@ -36,13 +36,13 @@ describe("Liquidity", function () {
     const usdcWhale = await ethers.getSigner(USDC_WHALE);
 
     const daiBal = await dai.balanceOf(daiWhale.address);
-    const usdcBal = await dai.balanceOf(usdcWhale.address);
+    const usdcBal = await usdc.balanceOf(usdcWhale.address);
     console.log(daiBal, usdcBal, daiAmount, usdcAmount);
 
     expect(await dai.balanceOf(daiWhale.address)).to.gte(daiAmount);
     expect(await usdc.balanceOf(usdcWhale.address)).to.gte(usdcAmount);
-    //  expect(await dai.balanceOf(daiWhale.address)).to.equal(daiBal);
-    //  expect(await usdc.balanceOf(usdcWhale.address)).to.equal(usdcBal);
+    expect(await dai.balanceOf(daiWhale.address)).to.equal(daiBal);
+    expect(await usdc.balanceOf(usdcWhale.address)).to.equal(usdcBal);
     console.log(daiWhale.address, usdcWhale.address);
 
     await dai.connect(daiWhale).transfer(accounts[0].address, daiAmount);
