@@ -1,0 +1,56 @@
+.AllTokensBox {
+  margin-block: 1rem;
+  background-color: #1e1e1e;
+  border: 1px solid #d1f80b53;
+  border-radius: 0.5rem;
+}
+
+.AllTokensBoxHeader {
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 2fr 2fr 2fr 2fr;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #d1f80b53;
+}
+
+.AllTokensBoxHeader p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.AllTokensBoxList {
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 2fr 2fr 2fr 2fr;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  margin-top: -0.5rem;
+}
+
+.AllTokensBoxListPara {
+  font-size: 1.3rem;
+  display: flex;
+  gap: 0.5rem;
+  line-height: 0;
+  align-items: center;
+}
+
+@media only screen and (max-width: 35em) {
+  .AllTokensBoxList {
+    grid-template-columns: 3.5fr 1fr;
+  }
+  .hide {
+    display: none;
+  }
+  .AllTokensBoxHeader {
+    grid-template-columns: 3.5fr 1fr;
+  }
+
+  .AllTokensBoxHeader .hide {
+    display: none;
+  }
+
+  .AllTokensBoxListPara {
+    font-size: 1.1rem;
+  }
+}
