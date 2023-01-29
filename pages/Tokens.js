@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import Style from "../styles/Tokens.module.css";
@@ -123,7 +123,7 @@ const Tokens = () => {
           </div>
         </div>
 
-        <AllTokens allTokenList={topTokensList} />
+        <AllTokens allTokenList={allTokenList} />
       </div>
     </div>
   );
