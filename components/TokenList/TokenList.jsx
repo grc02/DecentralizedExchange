@@ -6,8 +6,8 @@ import images from "../../assets";
 
 const TokenList = ({ setOpenTokenBox, tokenData }) => {
   let tokenList = [];
-  for (let i = 0; i < tokenData.length; i++) {
-    if (i % 2 == 1) tokenList.push(tokenData[i]);
+  for (let i = 0; i < tokenData.length / 2; i++) {
+    tokenList.push(tokenData[i]);
   }
 
   return (
