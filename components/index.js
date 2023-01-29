@@ -1,3 +1,4 @@
+import AllTokens from "./AllTokens/AllTokens";
 import HeroSection from "./HeroSection/HeroSection";
 import Model from "./Model/Model";
 import Navbar from "./Navbar/Navbar";
@@ -6,4 +7,13 @@ import Toggle from "./Toggle/Toggle";
 import Token from "./Token/Token";
 import TokenList from "./TokenList/TokenList";
 
-export { HeroSection, Model, Navbar, SearchToken, Toggle, Token, TokenList };
+export {
+  AllTokens,
+  HeroSection,
+  Model,
+  Navbar,
+  SearchToken,
+  Toggle,
+  Token,
+  TokenList,
+};
