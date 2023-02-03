@@ -158,9 +158,43 @@ const PoolAdd = () => {
             )}
 
             {/* //DEPOSIT AMOUNT */}
+            <div className={Style.PoolAddBoxDeposit}>
+              <h4>Deposit Amount</h4>
+
+              <div className={Style.PoolAddBoxDepositBox}>
+                <input
+                  type="number"
+                  placeholder={tokenOne.tokenBalance.slice(0, 9)}
+                  onChange={(e) => setTokenAmountOne(e.target.value)}
+                />
+                <div className={Style.PoolAddBoxDepositBoxInput}>
+                  <p>
+                    <small>UNI</small>
+                  </p>
+                  <p className={Style.PoolAddBoxDepositBoxInput}>
+                    Balance: 0.00
+                  </p>
+                </div>
+              </div>
+
+              <div className={Style.PoolAddBoxDepositBox}>
+                <input
+                  type="number"
+                  placeholder={tokenOne.tokenBalance.slice(0, 9)}
+                  onChange={(e) => setTokenAmountOne(e.target.value)}
+                />
+                <div className={Style.PoolAddBoxDepositBoxInput}>
+                  <p>
+                    <small>UNI</small>
+                  </p>
+                  <p className={Style.PoolAddBoxDepositBoxInput}>
+                    Balance: 0.00
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        {/* //LEFT SECTION UNTIL HERE */}
       </div>
     </div>
   );
