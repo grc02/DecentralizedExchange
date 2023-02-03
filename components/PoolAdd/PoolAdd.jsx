@@ -71,6 +71,45 @@ const PoolAdd = () => {
             />
           </div>
         </div>
+
+        {/* //SELECT PRICE RANGE SECTION */}
+        <div className={Style.PoolAddBoxPrice}>
+          {/* //LEFT */}
+          <div className={Style.PoolAddBoxPriceLeft}>
+            <h4>Select Pair</h4>
+            <div className={Style.PoolAddBoxPriceLeftToken}>
+              <div className={Style.PoolAddBoxPriceLeftTokenInfo}>
+                <p>
+                  <Image
+                    src={images.etherlogo}
+                    alt="image"
+                    width={20}
+                    height={20}
+                  />
+                </p>
+                <p>WETH</p>
+                <p>🡫</p>
+              </div>
+              <div
+                className={Style.PoolAddBoxPriceLeftTokenInfo}
+                onClick={() => {
+                  setOpenTokenModel(true);
+                }}
+              >
+                <p>
+                  <Image
+                    src={images.etherlogo}
+                    alt="image"
+                    width={20}
+                    height={20}
+                  />
+                </p>
+                <p>UNI</p>
+                <p>🡫</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
