@@ -53,6 +53,7 @@ const PoolAdd = () => {
   return (
     <div className={Style.PoolAdd}>
       <div className={Style.PoolAddBox}>
+        {/* //HEADER SECTION */}
         <div className={Style.PoolAddBoxHeader}>
           <div className={Style.PoolAddBoxHeaderLeft}>
             <Image src={images.arrowLeft} alt="image" width={30} height={30} />
@@ -87,7 +88,7 @@ const PoolAdd = () => {
                     height={20}
                   />
                 </p>
-                <p>WETH</p>
+                <p>UNI</p>
                 <p>🡫</p>
               </div>
               <div
@@ -104,12 +105,26 @@ const PoolAdd = () => {
                     height={20}
                   />
                 </p>
-                <p>UNI</p>
+                <p>WETH</p>
                 <p>🡫</p>
               </div>
             </div>
+
+            {/* //FEE */}
+            <div className={Style.PoolAddBoxPriceLeftFee}>
+              <div className={Style.PoolAddBoxPriceLeftFeeBox}>
+                <h4>Fee teir</h4>
+                <p>The % you will earn in fees</p>
+              </div>
+              {openFee ? (
+                <button onClick={() => setOpenFee(false)}>Hide</button>
+              ) : (
+                <button onClick={() => setOpenFee(true)}>Show</button>
+              )}
+            </div>
           </div>
         </div>
+        {/* //LEFT SECTION UNTIL HERE */}
       </div>
     </div>
   );
