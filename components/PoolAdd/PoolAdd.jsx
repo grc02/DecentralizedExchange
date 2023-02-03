@@ -194,6 +194,22 @@ const PoolAdd = () => {
               </div>
             </div>
           </div>
+
+          {/* //RIGHT */}
+          <div className={Style.PoolAddBoxPriceRight}>
+            <h4>Set Price Range</h4>
+            {/* //UPPER RIGHT WALLET DETAILS SECTION */}
+            <div className={Style.PoolAddBoxPriceRightBox}>
+              <p className={Style.PoolAddBoxPriceRightBoxPara}>
+                Current Price: 41.1494 TestV4 per WETH
+              </p>
+              <Image src={images.wallet} alt="wallet" height={80} width={80} />
+              <h3>Your position will appear here.</h3>
+            </div>
+
+            {/* //PRICE RANGE */}
+          </div>
+          {/* //RIGHT SECTION END */}
         </div>
       </div>
     </div>
