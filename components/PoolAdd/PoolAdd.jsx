@@ -207,7 +207,33 @@ const PoolAdd = () => {
               <h3>Your position will appear here.</h3>
             </div>
 
-            {/* //PRICE RANGE */}
+            {/* //PRICE RANGE - MIDDLE RIGHT SECTION */}
+            {/* //MIN */}
+            <div className={Style.PoolAddBoxPriceRightRange}>
+              <div className={Style.PoolAddBoxPriceRightRangeBox}>
+                <p>Min Price</p>
+                <p
+                  className={Style.PoolAddBoxPriceRightRangeBoxPara}
+                  onClick={(e) => minPriceRange(e.target.innerText)}
+                >
+                  <small>-</small> {minPrice} <small>+</small>
+                </p>
+                <p>TestV4 per WETH</p>
+              </div>
+              {/* //MAX */}
+              <div className={Style.PoolAddBoxPriceRightRangeBox}>
+                <p>Max Price</p>
+                <p
+                  className={Style.PoolAddBoxPriceRightRangeBoxPara}
+                  onClick={(e) => minPriceRange(e.target.innerText)}
+                >
+                  <small>-</small> {maxPrice} <small>+</small>
+                </p>
+                <p>TestV4 per WETH</p>
+              </div>
+            </div>
+
+            {/* BUTTON - LOWER RIGHT SECTION */}
           </div>
           {/* //RIGHT SECTION END */}
         </div>
