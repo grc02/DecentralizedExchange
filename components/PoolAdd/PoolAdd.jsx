@@ -122,6 +122,42 @@ const PoolAdd = () => {
                 <button onClick={() => setOpenFee(true)}>Show</button>
               )}
             </div>
+
+            {/* //FEE LIST */}
+            {openFee && (
+              <div className={Style.PoolAddBoxPriceLeftList}>
+                {feePairs.map((el, i) => (
+                  <div
+                    className={Style.PoolAddBoxPriceLeftListItem}
+                    key={i + 1}
+                    onClick={() => (setActive(i + 1), setFee(el.feeSystem))}
+                  >
+                    <div className={Style.PoolAddBoxPriceLeftListItemInfo}>
+                      <p>{el.fee}</p>
+                      <p>
+                        {active == i + 1 ? (
+                          <Image
+                            src={images.tick}
+                            alt="image"
+                            width={20}
+                            height={20}
+                          />
+                        ) : (
+                          ""
+                        )}
+                      </p>
+                    </div>
+
+                    <small>{el.info}</small>
+                    <p className={Style.PoolAddBoxPriceLeftListItemPara}>
+                      {el.number}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* //DEPOSIT AMOUNT */}
           </div>
         </div>
         {/* //LEFT SECTION UNTIL HERE */}
