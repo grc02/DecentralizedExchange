@@ -130,7 +130,7 @@ const PoolAdd = () => {
                   <div
                     className={Style.PoolAddBoxPriceLeftListItem}
                     key={i + 1}
-                    onClick={() => (setActive(i + 1), setFee(el.feeSystem))}
+                    onClick={() => setActive(i + 1)}
                   >
                     <div className={Style.PoolAddBoxPriceLeftListItemInfo}>
                       <p>{el.fee}</p>
@@ -162,11 +162,7 @@ const PoolAdd = () => {
               <h4>Deposit Amount</h4>
 
               <div className={Style.PoolAddBoxDepositBox}>
-                <input
-                  type="number"
-                  placeholder={tokenOne.tokenBalance.slice(0, 9)}
-                  onChange={(e) => setTokenAmountOne(e.target.value)}
-                />
+                <input type="text" placeholder="0" />
                 <div className={Style.PoolAddBoxDepositBoxInput}>
                   <p>
                     <small>UNI</small>
@@ -178,11 +174,7 @@ const PoolAdd = () => {
               </div>
 
               <div className={Style.PoolAddBoxDepositBox}>
-                <input
-                  type="number"
-                  placeholder={tokenOne.tokenBalance.slice(0, 9)}
-                  onChange={(e) => setTokenAmountOne(e.target.value)}
-                />
+                <input type="text" placeholder="0" />
                 <div className={Style.PoolAddBoxDepositBoxInput}>
                   <p>
                     <small>UNI</small>
@@ -258,3 +250,5 @@ const PoolAdd = () => {
     </div>
   );
 };
+
+export default PoolAdd;
