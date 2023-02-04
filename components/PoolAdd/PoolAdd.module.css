@@ -1,0 +1,17 @@
+.PoolAddBox {
+  background-color: #1e1e1e;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.PoolAddBoxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.PoolAddBoxHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #cff80b;
+}
