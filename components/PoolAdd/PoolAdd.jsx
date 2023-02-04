@@ -208,8 +208,8 @@ const PoolAdd = () => {
             </div>
 
             {/* //PRICE RANGE - MIDDLE RIGHT SECTION */}
-            {/* //MIN */}
             <div className={Style.PoolAddBoxPriceRightRange}>
+              {/* //MIN */}
               <div className={Style.PoolAddBoxPriceRightRangeBox}>
                 <p>Min Price</p>
                 <p
@@ -233,7 +233,14 @@ const PoolAdd = () => {
               </div>
             </div>
 
-            {/* BUTTON - LOWER RIGHT SECTION */}
+            {/* BUTTONS - LOWER RIGHT SECTION */}
+            <div className={Style.PoolAddBoxPriceRightButton}>
+              <button>Full Range</button>
+            </div>
+
+            <div className={Style.PoolAddBoxPriceRightAmount}>
+              <button>Enter Amount</button>
+            </div>
           </div>
           {/* //RIGHT SECTION END */}
         </div>
