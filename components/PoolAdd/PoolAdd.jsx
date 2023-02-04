@@ -242,9 +242,19 @@ const PoolAdd = () => {
               <button>Enter Amount</button>
             </div>
           </div>
-          {/* //RIGHT SECTION END */}
         </div>
       </div>
+      {openModel && (
+        <div className={Style.token}>
+          <Token setOpenSetting={setOpenModel} />
+        </div>
+      )}
+
+      {openTokenModel && (
+        <div className={Style.token}>
+          <SearchToken tokenData="hey" openToken={setOpenTokenModel} />
+        </div>
+      )}
     </div>
   );
 };
