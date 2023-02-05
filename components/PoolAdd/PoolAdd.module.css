@@ -113,7 +113,7 @@
 
 .PoolAddBoxDepositBoxInput {
   background-color: #cff80b;
-  padding: 0 1rem;
+  padding: 0.1rem;
   border-radius: 0.5rem;
   color: #1e1e1e;
   font-size: 1.2rem;
@@ -138,3 +138,85 @@
   margin-top: -0.5rem;
   padding-left: 1.4rem;
 }
+
+.PoolAddBoxPriceRightBox {
+  text-align: center;
+  line-height: 1;
+  margin-top: 1rem;
+}
+
+.PoolAddBoxPriceRightBoxPara {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.PoolAddBoxPriceRightRange {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.PoolAddBoxPriceRightRangeBox {
+  border-radius: 0.5rem;
+  border: 1px solid #cff80b;
+  text-align: center;
+  line-height: 1;
+}
+
+.PoolAddBoxPriceRightRangeBoxPara small {
+  margin-inline: 1rem;
+  background-color: #cff80b;
+  font-size: 1.2rem;
+  color: #1e1e1e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.PoolAddBoxPriceRightAmount,
+.PoolAddBoxPriceRightButton {
+  margin-top: 1rem;
+  display: grid;
+}
+
+.PoolAddBoxPriceRightButton button {
+  background-color: #cff80b;
+  border: 0;
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.PoolAddBoxPriceRightAmount button {
+  background-color: #cff80b;
+  border: 0;
+  outline: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.token {
+  position: absolute;
+  background-color: #1e1e1e;
+  inset: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #cff80b;
+}
+
+/* .PoolAddBoxPriceRightRangeBoxPara {
+  background-color: #cff80b;
+  border: 0;
+  outline: 0;
+  width: 80%;
+  height: 2rem;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+} */
