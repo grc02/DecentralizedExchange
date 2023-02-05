@@ -15,3 +15,126 @@
   gap: 1rem;
   color: #cff80b;
 }
+
+.PoolAddBoxPrice {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #1e1e1e;
+  padding: 1rem;
+  gap: 2rem;
+}
+.PoolAddBoxPriceLeftToken {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.PoolAddBoxPriceLeftTokenInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #cff80b;
+  border-radius: 0.5rem;
+  color: #1e1e1e;
+  padding: 0 2rem;
+  font-weight: 700;
+}
+
+.PoolAddBoxPriceLeftFee {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+  border: 1px solid #cff80b;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+.PoolAddBoxPriceLeftFee p {
+  font-size: 0.8rem;
+}
+
+.PoolAddBoxPriceLeftFee button {
+  background-color: #cff80b;
+  border: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.PoolAddBoxPriceLeftList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.PoolAddBoxPriceLeftListItem {
+  border: 1px solid #cff80b;
+  padding: 0.5rem;
+  line-height: 0.8;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.PoolAddBoxPriceLeftListItemInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.PoolAddBoxPriceLeftListItemPara {
+  background-color: #cff80b;
+  color: #1e1e1e;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
+
+.PoolAddBoxDepositBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 0;
+  border: 1px solid #cff80b;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.PoolAddBoxDepositBox input {
+  width: 50%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #cff80b;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+}
+
+.PoolAddBoxDepositBoxInput {
+  background-color: #cff80b;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  color: #1e1e1e;
+  font-size: 1.2rem;
+}
+
+.PoolAddBoxDepositBoxInput p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.PoolAddBoxDepositBoxInput p small {
+  background-color: #1e1e1e;
+  color: #cff80b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.5rem;
+}
+
+.PoolAddBoxDepositBoxInputBalance {
+  font-size: 0.8rem;
+  margin-top: -0.5rem;
+  padding-left: 1.4rem;
+}
