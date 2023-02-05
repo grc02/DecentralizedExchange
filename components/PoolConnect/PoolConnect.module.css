@@ -1,0 +1,55 @@
+.PoolConnectBox {
+  background-color: #1e1e1e;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+.PoolConnectBoxHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PoolConnectBoxHeader h2 {
+  font-size: 2rem;
+}
+
+.PoolConnectBoxHeader p {
+  background-color: #cff80b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #1e1e1e;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.PoolConnectBoxMiddle {
+  text-align: center;
+}
+
+.PoolConnectBoxMiddle button {
+  background-color: #cff80b;
+  color: #1e1e1e;
+  border: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem 3rem;
+  border-radius: 4rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.PoolConnectBoxInfo {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1rem;
+  line-height: 0;
+  margin-top: 2rem;
+}
+
+.PoolConnectBoxInfoRight,
+.PoolConnectBoxInfoLeft {
+  border: 1px solid #cff80b;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
