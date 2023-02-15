@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
-import { Token, CurrenctAmount, TradeType, Percent } from "@uniswap/sdk-cre";
+import { Token, CurrenctAmount, TradeType, Percent } from "@uniswap/sdk-core";
 
 import {
   checkIfWalletConnected,
@@ -131,6 +131,10 @@ export const SwapTokenContextProvider = ({ children }) => {
   return (
     <SwapTokenContext.Provider
       value={{
+        singleSwapToken,
+        connectWallet,
+        getPrice,
+        swapUpdatePrice,
         account,
         weth9,
         dai,
