@@ -1,17 +1,13 @@
-require("dotenv").config();
-
 import { AlphaRouter } from "@uniswap/smart-order-router";
 import { ethers, BigNumber } from "ethers";
 import { Token, CurrencyAmount, TradeType, Percent } from "@uniswap/sdk-core";
 
-const MAINNET_API_KEY = process.env.MAINNET_API_KEY || "";
+const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
 
 const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
 const chainId = 1;
 
-const provider = new ethers.providers.JsonRpcProvider(
-  `https://eth-mainnet.g.alchemy.com/v2/${MAINNET_API_KEY}`
-);
+const provider = new ethers.providers.JsonRpcProvider(MAINNET_RPC_URL);
 
 const router = new AlphaRouter({ chainId: chainId, provider: provider });
 

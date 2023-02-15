@@ -1,7 +1,6 @@
 const axios = require("axios");
-require("dotenv").config();
 
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "";
+const ETHERSCAN_API_KEY = process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY || "";
 
 exports.getAbi = async (address) => {
   const url = `https://api.etherscan.io/api?module=contract&action=getabi&address=${address}&apikey=${ETHERSCAN_API_KEY}`;

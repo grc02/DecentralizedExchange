@@ -1,7 +1,6 @@
 const { ethers } = require("ethers");
-require("dotenv").config();
 
-const MAINNET_API_KEY = process.env.MAINNET_API_KEY || "";
+const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
 
 const {
   abi: IUniswapV3PoolABI,
@@ -12,9 +11,7 @@ const {
 
 const { getAbi, getPoolImmutables } = require("./priceHelpers");
 
-const MAINNET_URL = `https://eth-mainnet.g.alchemy.com/v2/${MAINNET_API_KEY}`;
-
-const provider = new ethers.providers.JsonRpcProvider(MAINNET_URL);
+const provider = new ethers.providers.JsonRpcProvider(MAINNET_RPC_URL);
 
 const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
 
