@@ -7,48 +7,11 @@ import images from "../../assets";
 const SearchToken = ({ openToken, tokens, tokenData }) => {
   const [active, setActive] = useState(1);
 
-  const coins = [
-    {
-      image: images.ether,
-      name: "ETH",
-    },
-    {
-      image: images.ether,
-      name: "DAI",
-    },
-    {
-      image: images.ether,
-      name: "DOG",
-    },
-    {
-      image: images.ether,
-      name: "FUN",
-    },
-    {
-      image: images.ether,
-      name: "WETH",
-    },
-    {
-      image: images.ether,
-      name: "UNI",
-    },
-    {
-      image: images.ether,
-      name: "TIME",
-    },
-    {
-      image: images.ether,
-      name: "LOO",
-    },
-    {
-      image: images.ether,
-      name: "OOO",
-    },
-    {
-      image: images.ether,
-      name: "HEY  ",
-    },
-  ];
+  let tokenList = [];
+  for (let i = 0; i < tokenData.length / 2; i++) {
+    tokenList.push(tokenData[i]);
+  }
+
   return (
     <div className={Style.SearchToken}>
       <div className={Style.SearchTokenBox}>
@@ -71,7 +34,7 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
         </div>
 
         <div className={Style.SearchTokenBoxToken}>
-          {coins.map((el, i) => (
+          {tokenList.map((el, i) => (
             <span
               key={i + 1}
               className={active == i + 1 ? `${Style.active}` : ""}
@@ -80,6 +43,9 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
                 tokens({
                   name: el.name,
                   image: el.image,
+                  symbol: el.symbol,
+                  tokenBalance: el.tokenBalance,
+                  tokenAddress: el.tokenAddress,
                 })
               )}
             >
@@ -89,7 +55,7 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
                 width={30}
                 height={30}
               />
-              {el.name}
+              {el.symbol}
             </span>
           ))}
         </div>
