@@ -108,8 +108,8 @@ export const SwapTokenContextProvider = ({ children }) => {
 
       //SWAP
       const tx = await singleSwapToken.swapExactInputSingle(
-        token1.tokenAddress.tokenAddress,
-        token2.tokenAddress.tokenAddress,
+        token1.tokenAddress,
+        token2.tokenAddress,
         amountIn,
         {
           gasLimit: 300000,
