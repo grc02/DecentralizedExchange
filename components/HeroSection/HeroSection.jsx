@@ -63,7 +63,7 @@ const HeroSection = () => {
 
     const poolAddress = "0xc2e9f25be6257c210d7adf0d4cd6e3e881ba25f8";
     const poolData = await getPrice(value, poolAddress);
-    const message = `${value} ${poolData[2]} = ${poolData[0]} ${poolData[1]}`;
+    const message = `${poolData[0]} ${poolData[2]} = ${value} ${poolData[1]}`;
     console.log(message);
     setPoolMessage(message);
   };
@@ -143,7 +143,13 @@ const HeroSection = () => {
         {account ? (
           <button
             className={Style.HeroSectionBoxBtn}
-            onClick={() => singleSwapToken()}
+            onClick={() =>
+              singleSwapToken({
+                token1: tokenOne,
+                token2: tokenTwo,
+                swapAmount,
+              })
+            }
           >
             Swap
           </button>
