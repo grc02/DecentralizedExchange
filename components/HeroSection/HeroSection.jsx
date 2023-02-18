@@ -87,7 +87,7 @@ const HeroSection = () => {
         {/*// TOKEN 1 */}
         <div className={Style.HeroSectionBoxInput}>
           <input
-            type="text"
+            type="number"
             placeholder="0"
             onChange={(e) => (
               callOutput(e.target.value),
