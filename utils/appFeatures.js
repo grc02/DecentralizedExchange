@@ -12,6 +12,7 @@ import {
   SwapMultiHopABI,
   IWETHAddress,
   IWETHABI,
+  DAIAddress,
 } from "../context/constants";
 
 //CHECK IF WALLET IS CONNECTED
@@ -101,8 +102,6 @@ export const connectingWithIWETHToken = async () => {
     console.log(error);
   }
 };
-
-const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 
 //CONNECTING With DAI TOKEN CONTRACT
 export const connectingWithDAIToken = async () => {
