@@ -69,4 +69,61 @@ async function main() {
     signer
   );
   const nftDescriptor = await NFTDescriptor.deploy();
+
+  const linkedBytecode = linkLibraries(
+    {
+      bytecode: artifacts.NonfungibleTokenPositionDescriptor.bytecode,
+      linkReferences: {
+        "NFTDescriptor.sol": {
+          NFTDescriptor: [
+            {
+              length: 20,
+              start: 1261,
+            },
+          ],
+        },
+      },
+    },
+    {
+      NFTDescriptor: nftDescriptor.address,
+    }
+  );
+
+  const TokenPositionDescriptor = new ContractFactory(
+    artifacts.NonfungibleTokenPositionDescriptor.abi,
+    linkedBytecode,
+    signer
+  );
+
+  const tokenPositionDescriptor = await TokenPositionDescriptor.deploy(
+    weth.address
+  );
+
+  const PositionManager = new ContractFactory(
+    artifacts.NonfungiblePositionManager.abi,
+    artifacts.NonfungiblePositionManager.bytecode,
+    signer
+  );
+  const positionManager = await PositionManager.deploy(
+    factory.address,
+    weth.address,
+    tokenPositionDescriptor.address
+  );
+
+  console.log("wethAddress=", `'${weth.address}'`);
+  console.log("factoryAddress=", `'${factory.address}'`);
+  console.log("swapRouterAddress=", `'${swapRouter.address}'`);
+  console.log("nftDescriptorAddress=", `'${nftDescriptor.address}'`);
+  console.log(
+    "positionDescriptorAddress=",
+    `'${tokenPositionDescriptor.address}'`
+  );
+  console.log("positionManagerAddress=", `'${positionManager.address}'`);
 }
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
