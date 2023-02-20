@@ -23,7 +23,7 @@ const TokenList = ({ setOpenTokenBox, tokenData }) => {
       <div className={Style.TokenListTitle}>Your Token List</div>
 
       {tokenList.map((el, i) => (
-        <div className={Style.TokenListBox}>
+        <div key={i + 1} className={Style.TokenListBox}>
           <div className={Style.TokenListBoxInfo}>
             <p className={Style.TokenListBoxInfoSymbol}>{el.symbol}</p>
             <p>

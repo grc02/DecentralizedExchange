@@ -39,3 +39,34 @@ const linkLibraries = ({ bytecode, linkReferences }, libraries) => {
 
   return bytecode;
 };
+
+async function main() {
+  const [signer] = await ethers.getSigners();
+  const Weth = new ContractFactory(
+    artifacts.WETH9.abi,
+    artifacts.WETH9.bytecode,
+    signer
+  );
+  const weth = await Weth.deploy();
+
+  const Factory = new ContractFactory(
+    artifacts.UniswapV3Factory.abi,
+    artifacts.UniswapV3Factory.bytecode,
+    signer
+  );
+  const factory = await Factory.deploy();
+
+  const SwapRouter = new ContractFactory(
+    artifacts.SwapRouter.abi,
+    artifacts.SwapRouter.bytecode,
+    signer
+  );
+  const swapRouter = await SwapRouter.deploy(factory.address, weth.address);
+
+  const NFTDescriptor = new ContractFactory(
+    artifacts.NFTDescriptor.abi,
+    artifacts.NFTDescriptor.bytecode,
+    signer
+  );
+  const nftDescriptor = await NFTDescriptor.deploy();
+}
