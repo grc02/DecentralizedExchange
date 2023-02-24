@@ -5,6 +5,13 @@ require("dotenv").config();
 
 const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
 
+import {
+  fourAddrss,
+  fiveAddress,
+  factoryAddress,
+  positionManagerAddress,
+} from "./constants";
+
 // Token addresses
 const threeAddress = "0x47c05BCCA7d57c87083EB4e586007530eE4539e9";
 const fourAddrss = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
