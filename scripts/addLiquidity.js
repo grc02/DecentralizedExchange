@@ -6,7 +6,6 @@ require("dotenv").config();
 
 const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
 
-const threeAddress = "0xB468647B04bF657C9ee2de65252037d781eABafD";
 const fourAddress = "0x47c05BCCA7d57c87083EB4e586007530eE4539e9";
 const fiveAddress = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
 
@@ -14,11 +13,6 @@ const fiveAddress = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
 const FOUR_FIVE = "0x9fA2bA155AA6A539A2914B4D4Db2ff24338A32d3";
 
 // Uniswap contract address
-const wethAddress = "0x73C68f1f41e4890D06Ba3e71b9E9DfA555f1fb46";
-const factoryAddress = "0xD2D5e508C82EFc205cAFA4Ad969a4395Babce026";
-const swapRouterAddress = "0x2b639Cc84e1Ad3aA92D4Ee7d2755A6ABEf300D72";
-const nftDescriptorAddress = "0xF85895D097B2C25946BB95C4d11E2F3c035F8f0C";
-const positionDescriptorAddress = "0x0b27a79cb9C0B38eE06Ca3d94DAA68e0Ed17F953";
 const positionManagerAddress = "0x7bdd3b028C4796eF0EAf07d11394d0d9d8c24139";
 
 const artifacts = {
@@ -48,13 +42,7 @@ async function getPoolData(poolContract) {
 
 async function main() {
   const [owner, signer] = await ethers.getSigners();
-  //   const MAINNET_URL = "test network your";
-
-  //   const WALLET_ADDRESS = "Address";
-  //   const WALLET_SECRET = "Your Wallet Private Key";
   const provider = new ethers.providers.JsonRpcProvider(MAINNET_RPC_URL);
-  //   const wallet = new ethers.Wallet(WALLET_SECRET);
-  //   const signer = wallet.connect(provider);
 
   const FourContract = new Contract(fourAddress, artifacts.Four.abi, provider);
   const FiveContract = new Contract(fiveAddress, artifacts.Five.abi, provider);

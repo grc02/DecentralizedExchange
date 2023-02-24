@@ -1,36 +1,22 @@
 const { Contract, BigNumber } = require("ethers");
 const bn = require("bignumber.js");
-const Web3Modal = require("web3modal");
+bn.config({ EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40 });
+
 require("dotenv").config();
 
 const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
 
-import {
-  fourAddrss,
-  fiveAddress,
-  factoryAddress,
-  positionManagerAddress,
-} from "./constants";
-
-// Token addresses
-const threeAddress = "0x47c05BCCA7d57c87083EB4e586007530eE4539e9";
-const fourAddrss = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
-const fiveAddress = "0x773330693cb7d5D233348E25809770A32483A940";
+const fourAddress = "0x47c05BCCA7d57c87083EB4e586007530eE4539e9";
+const fiveAddress = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
 
 // Uniswap contract address
-const wethAddress = "0xe14058B1c3def306e2cb37535647A04De03Db092";
-const factoryAddress = "0x74ef2B06A1D2035C33244A4a263FF00B84504865";
-const swapRouterAddress = "0xF5b81Fe0B6F378f9E6A3fb6A6cD1921FCeA11799";
-const nftDescriptorAddress = "0x67baFF31318638F497f4c4894Cd73918563942c8";
-const positionDescriptorAddress = "0x6533158b042775e2FdFeF3cA1a782EFDbB8EB9b1";
-const positionManagerAddress = "0x73C68f1f41e4890D06Ba3e71b9E9DfA555f1fb46";
+const factoryAddress = "0xD2D5e508C82EFc205cAFA4Ad969a4395Babce026";
+const positionManagerAddress = "0x7bdd3b028C4796eF0EAf07d11394d0d9d8c24139";
 
 const artifacts = {
   UniswapV3Factory: require("@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json"),
   NonfungiblePositionManager: require("@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json"),
 };
-
-bn.config({ EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40 });
 
 const provider = new ethers.providers.JsonRpcProvider(MAINNET_RPC_URL);
 
@@ -71,12 +57,11 @@ async function deployPool(token0, token1, fee, price) {
 
 async function main() {
   const FourFivePool = await deployPool(
-    fourAddrss,
+    fourAddress,
     fiveAddress,
-    3000,
+    500,
     encodePriceSqrt(1, 1)
   );
-
   console.log("FOUR_FIVE=", `'${FourFivePool}'`);
 }
 
