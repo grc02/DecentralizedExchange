@@ -1,19 +1,17 @@
 const { Contract } = require("ethers");
 const { Token } = require("@uniswap/sdk-core");
 const { Pool, Position, nearestUsableTick } = require("@uniswap/v3-sdk");
-const { ethers } = require("hardhat");
+const { ethers, waffle } = require("hardhat");
 require("dotenv").config();
 
-const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL || "";
-
-const fourAddress = "0x47c05BCCA7d57c87083EB4e586007530eE4539e9";
-const fiveAddress = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
+const fourAddress = "0x408F924BAEC71cC3968614Cb2c58E155A35e6890";
+const fiveAddress = "0x773330693cb7d5D233348E25809770A32483A940";
 
 // Pool address
-const FOUR_FIVE = "0x9fA2bA155AA6A539A2914B4D4Db2ff24338A32d3";
+const FOUR_FIVE = "0xe1717D2fa8B1D2ec0ad2453B755a4B4644AD038F";
 
 // Uniswap contract address
-const positionManagerAddress = "0x7bdd3b028C4796eF0EAf07d11394d0d9d8c24139";
+const positionManagerAddress = "0xB468647B04bF657C9ee2de65252037d781eABafD";
 
 const artifacts = {
   NonfungiblePositionManager: require("@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json"),
@@ -30,7 +28,6 @@ async function getPoolData(poolContract) {
     poolContract.slot0(),
   ]);
 
-  console.log(tickSpacing, fee, liquidity, slot0);
   return {
     tickSpacing: tickSpacing,
     fee: fee,
@@ -41,8 +38,8 @@ async function getPoolData(poolContract) {
 }
 
 async function main() {
-  const [owner, signer] = await ethers.getSigners();
-  const provider = new ethers.providers.JsonRpcProvider(MAINNET_RPC_URL);
+  const [signer] = await ethers.getSigners();
+  const provider = waffle.provider;
 
   const FourContract = new Contract(fourAddress, artifacts.Four.abi, provider);
   const FiveContract = new Contract(fiveAddress, artifacts.Five.abi, provider);
@@ -114,10 +111,14 @@ async function main() {
     provider
   );
 
-  const tx = await nonfungiblePositionManager
-    .connect(signer)
-    .mint(params, { gasLimit: "1000000" });
-  await tx.wait();
+  try {
+    const tx = await nonfungiblePositionManager
+      .connect(signer)
+      .mint(params, { gasLimit: "1000000" });
+    await tx.wait();
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 main()

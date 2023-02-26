@@ -2,9 +2,8 @@ const UniswapV3Pool = require("@uniswap/v3-core/artifacts/contracts/UniswapV3Poo
 const { Contract } = require("ethers");
 const { Pool } = require("@uniswap/v3-sdk");
 const { Token } = require("@uniswap/sdk-core");
-const { FOUR_FIVE } = require("./constants");
 
-FOUR_FIVE = "0x9fA2bA155AA6A539A2914B4D4Db2ff24338A32d3";
+const FOUR_FIVE = "0xe1717D2fa8B1D2ec0ad2453B755a4B4644AD038F";
 
 async function getPoolData(poolContract) {
   const [
@@ -27,9 +26,9 @@ async function getPoolData(poolContract) {
     poolContract.maxLiquidityPerTick(),
   ]);
 
-  const TokenA = new Token(3, token0, 18, "FOUR", "Four Token");
+  const TokenA = new Token(31337, token0, 18, "FOUR", "Four Token");
 
-  const TokenB = new Token(3, token1, 18, "FIVE", "Five Token");
+  const TokenB = new Token(31337, token1, 18, "FIVE", "Five Token");
 
   const poolExample = new Pool(
     TokenA,
