@@ -21,7 +21,7 @@ import { getPrice } from "../Utils/fetchingPrice";
 import { swapUpdatePrice } from "../utils/swapUpdatePrice";
 import { addLiquidityExternal } from "../utils/addLiquidity";
 import { getLiquidityData } from "../utils/checkLiquidity";
-import { connectingWithPoolContract } from "../utils/deployPool";
+import { creatingPoolContract } from "../utils/deployPool";
 
 export const SwapTokenContext = React.createContext();
 
@@ -101,6 +101,60 @@ export const SwapTokenContextProvider = ({ children }) => {
     fetchingData();
   }, []);
 
+  //CREATE AND ADD LIQUIDITY
+  const createPoolAddLiquidity = async ({
+    tokenAddress0,
+    tokenAddress1,
+    fee,
+    tokenPrice1,
+    tokenPrice2,
+    slippage,
+    deadline,
+    tokenAmmountOne,
+    tokenAmmountTwo,
+  }) => {
+    try {
+      // First a pool must be created or already
+      // exist before adding liquidity
+      //CREATE POOL
+      const createdPoolAddress = await creatingPoolContract(
+        tokenAddress0,
+        tokenAddress1,
+        fee,
+        tokenPrice1,
+        tokenPrice2,
+        {
+          gasLimit: 500000,
+        }
+      );
+
+      console.log(createdPoolAddress);
+
+      //ADD LIQUIDITY
+      const data = await addLiquidityExternal(
+        tokenAddress0,
+        tokenAddress1,
+        poolAddress,
+        fee,
+        tokenAmmountOne,
+        tokenAmmountTwo
+      );
+      console.log(data);
+
+      // Update the userStorageData contract
+      // which acts as a database
+      //ADD DATA
+      const userStorageData = await connectingWithUserStorageContract();
+      await userStorageData.addTransaction(
+        poolAddress,
+        tokenAddress0,
+        tokenAddress1
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const singleSwapToken = async ({ token1, token2, swapAmount }) => {
     try {
       let singleSwapToken, weth, dai;
@@ -144,18 +198,18 @@ export const SwapTokenContextProvider = ({ children }) => {
   return (
     <SwapTokenContext.Provider
       value={{
-        singleSwapToken,
         connectWallet,
-        getPrice,
         swapUpdatePrice,
+        createPoolAddLiquidity,
+        singleSwapToken,
+        getPrice,
         account,
         weth9,
         dai,
         networkConnection,
-        connectWallet,
-        singleSwapToken,
         ether,
         tokenData,
+        getAllLiquidity,
       }}
     >
       {children}

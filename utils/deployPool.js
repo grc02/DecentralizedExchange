@@ -38,7 +38,7 @@ const encodePriceSqrt = (reserve1, reserve0) => {
   );
 };
 
-export const connectingWithPoolContract = async (
+export const creatingPoolContract = async (
   address1,
   address2,
   fee,
