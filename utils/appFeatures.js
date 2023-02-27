@@ -13,6 +13,8 @@ import {
   IWETHAddress,
   IWETHABI,
   DAIAddress,
+  userStorageDataAddress,
+  userStorageDataABI,
 } from "../context/constants";
 
 //CHECK IF WALLET IS CONNECTED
@@ -111,6 +113,24 @@ export const connectingWithDAIToken = async () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(DAIAddress, IWETHABI, signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//CONNECTING With UserStorageData CONTRACT
+export const connectingWithUserStorageContract = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      userStorageDataAddress,
+      userStorageDataABI,
+      signer
+    );
     return contract;
   } catch (error) {
     console.log(error);

@@ -3,6 +3,7 @@ import Two from "./json/Two.json";
 import SingleSwapToken from "./json/SingleSwapToken.json";
 import SwapMultiHop from "./json/SwapMultiHop.json";
 import IWETH from "./json/IWETH.json";
+import UserStorageData from "./json/UserStorageData.json";
 
 // MAINNET FORK:
 // One Token deployed at: 0x73C68f1f41e4890D06Ba3e71b9E9DfA555f1fb46
@@ -33,3 +34,6 @@ export const IWETHAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 export const IWETHABI = IWETH.abi;
 
 export const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+
+export const userStorageDataAddress = "";
+export const userStorageDataABI = UserStorageData.abi;

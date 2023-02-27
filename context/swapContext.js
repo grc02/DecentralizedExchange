@@ -11,13 +11,18 @@ import {
   connectingWithSingleSwapToken,
   connectingWithIWETHToken,
   connectingWithDAIToken,
+  connectingWithUserStorageContract,
 } from "../utils/appFeatures";
 
 import { IWETHABI } from "./constants";
 import ERC20 from "./json/ERC20.json";
 
-import { getPrice } from "../utils/fetchPrice";
+import { getPrice } from "../Utils/fetchingPrice";
 import { swapUpdatePrice } from "../utils/swapUpdatePrice";
+import { addLiquidityExternal } from "../utils/addLiquidity";
+import { getLiquidityData } from "../utils/checkLiquidity";
+import { connectingWithPoolContract } from "../utils/deployPool";
+
 export const SwapTokenContext = React.createContext();
 
 export const SwapTokenContextProvider = ({ children }) => {
@@ -27,6 +32,7 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [weth9, setWeth9] = useState("");
   const [dai, setDai] = useState("");
   const [tokenData, setTokenData] = useState([]);
+  const [getAllLiquidity, setGetAllLiquidity] = useState([]);
 
   const addToken = [
     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH9
@@ -72,13 +78,20 @@ export const SwapTokenContextProvider = ({ children }) => {
         });
       });
 
-      const wethContract = await connectingWithIWETHToken();
-      const wethBalance = await wethContract.balanceOf(userAccount);
-      setWeth9(ethers.utils.formatEther(wethBalance));
+      // //GET LIQUDITY
+      const userStorageData = await connectingWithUserStorageContract();
+      const userLiquidity = await userStorageData.getAllTransactions();
 
-      const daiContract = await connectingWithDAIToken();
-      const daiBalance = await daiContract.balanceOf(userAccount);
-      setDai(ethers.utils.formatEther(daiBalance));
+      userLiquidity.map(async (el, i) => {
+        const liquidityData = await getLiquidityData(
+          el.poolAddress,
+          el.tokenAddress0,
+          el.tokenAddress1
+        );
+
+        getAllLiquidity.push(liquidityData);
+        console.log(getAllLiquidity);
+      });
     } catch (error) {
       console.log(error);
     }
