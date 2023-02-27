@@ -37,3 +37,33 @@ const encodePriceSqrt = (reserve1, reserve0) => {
       .toString()
   );
 };
+
+export const connectingWithPoolContract = async (
+  address1,
+  address2,
+  fee,
+  tokenAmount1,
+  tokenAmount2
+) => {
+  const web3modal = new Web3Modal();
+  const connection = await web3modal.connect();
+  const provider = new ethers.providers.Web3Provider(connection);
+  const signer = provider.getSigner();
+
+  const createPoolContract = fetchManagerContract(signer);
+
+  const price = encodePriceSqrt(tokenAmount1, tokenAmount2);
+  console.log(price);
+  const transaction = await createPoolContract
+    .connect(signer)
+    .createAndInitializePoolIfNecessary(address1, address2, fee, price, {
+      gasLimit: 30000000,
+    });
+
+  await transaction.wait();
+
+  const factory = fetchFactoryContract(signer);
+  const poolAddress = await factory.getPool(address1, address2, fee);
+
+  return poolAddress;
+};
