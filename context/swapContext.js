@@ -17,7 +17,7 @@ import {
 import { IWETHABI } from "./constants";
 import ERC20 from "./json/ERC20.json";
 
-import { getPrice } from "../Utils/fetchingPrice";
+import { getPrice } from "../utils/fetchPrice";
 import { swapUpdatePrice } from "../utils/swapUpdatePrice";
 import { addLiquidityExternal } from "../utils/addLiquidity";
 import { getLiquidityData } from "../utils/checkLiquidity";
