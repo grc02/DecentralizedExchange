@@ -8,20 +8,19 @@ import { PoolAdd, PoolConnect } from "../components/index";
 import { SwapTokenContext } from "../context/swapContext";
 
 const Pool = () => {
-  const { account, createLiquidityAndPool, tokenData, getAllLiquidity } =
+  const { account, createPoolAddLiquidity, tokenData, getAllLiquidity } =
     useContext(SwapTokenContext);
   // Show the pool data only when the user is connected
   const [closePool, setClosePool] = useState(false);
 
   return (
     <div className={Style.Pool}>
-      {" "}
       {account ? (
         <PoolAdd
           account={account}
           setClosePool={setClosePool}
           tokenData={tokenData}
-          createLiquidityAndPool={createLiquidityAndPool}
+          createPoolAddLiquidity={createPoolAddLiquidity}
         />
       ) : (
         <PoolConnect
