@@ -5,13 +5,41 @@ import images from "../../assets";
 import Style from "./PoolAdd.module.css";
 import { Token, SearchToken } from "../index";
 
-const PoolAdd = () => {
+const PoolAdd = ({
+  account,
+  setClosePool,
+  tokenData,
+  createPoolAddLiquidity,
+}) => {
   const [openModel, setOpenModel] = useState(false);
   const [openTokenModel, setOpenTokenModel] = useState(false);
   const [active, setActive] = useState(1);
   const [openFee, setOpenFee] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+
+  const [fee, setFee] = useState(0);
+  const [slippage, setSlippage] = useState(25);
+  const [deadline, setDeadline] = useState(10);
+  const [tokenAmountOne, setTokenAmountOne] = useState(0);
+  const [tokenAmountTwo, setTokenAmountTwo] = useState(0);
+
+  //TOKEN 1
+  const [tokenOne, setTokenOne] = useState({
+    name: "",
+    image: "",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
+  //TOKEN 2
+  const [tokenTwo, setTokenTwo] = useState({
+    name: "",
+    image: "",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
 
   const feePairs = [
     {
@@ -34,35 +62,30 @@ const PoolAdd = () => {
     },
   ];
 
-  const minPriceRange = (text) => {
-    if (text == "+") {
-      setMinPrice(minPrice + 1);
-    } else if (text == "-") {
-      setMinPrice(minPrice - 1);
-    }
-  };
-
-  const maxPriceRange = (text) => {
-    if (text == "+") {
-      setMaxPrice(maxPrice + 1);
-    } else if (text == "-") {
-      setMaxPrice(maxPrice - 1);
-    }
-  };
-
   return (
     <div className={Style.PoolAdd}>
       <div className={Style.PoolAddBox}>
         {/* //HEADER SECTION */}
         <div className={Style.PoolAddBoxHeader}>
           <div className={Style.PoolAddBoxHeaderLeft}>
-            <Image src={images.arrowLeft} alt="image" width={30} height={30} />
+            <Image
+              src={images.arrowLeft}
+              alt="image"
+              width={30}
+              height={30}
+              onClick={() => setClosePool(false)}
+            />
           </div>
           <div className={Style.PoolAddBoxHeaderMiddle}>
             <p>Add Liqudity</p>
           </div>
           <div className={Style.PoolAddBoxHeaderRight}>
-            <p>Clear All</p>
+            <p>
+              {tokenOne.name || ""} {tokenOne.tokenBalance.slice(0, 9) || ""}
+              {""}
+              {""}
+              {tokenTwo.name || ""} {tokenTwo.tokenBalance.slice(0, 9) || ""}
+            </p>
             <Image
               src={images.close}
               alt="image"
