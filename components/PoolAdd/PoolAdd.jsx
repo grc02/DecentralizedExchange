@@ -12,7 +12,8 @@ const PoolAdd = ({
   createPoolAddLiquidity,
 }) => {
   const [openModel, setOpenModel] = useState(false);
-  const [openTokenModel, setOpenTokenModel] = useState(false);
+  const [openTokenModelOne, setOpenTokenModelOne] = useState(false);
+  const [openTokenModelTwo, setOpenTokenModelTwo] = useState(false);
   const [active, setActive] = useState(1);
   const [openFee, setOpenFee] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
@@ -105,7 +106,7 @@ const PoolAdd = ({
               <div
                 className={Style.PoolAddBoxPriceLeftTokenInfo}
                 onClick={() => {
-                  setOpenTokenModel(true);
+                  setOpenTokenModelOne(true);
                 }}
               >
                 <p>
@@ -116,7 +117,7 @@ const PoolAdd = ({
                     height={20}
                   />
                 </p>
-                <p>UNI</p>
+                <p>{tokenOne.name || "ETH"}</p>
                 <p>
                   <Image
                     src={images.search}
@@ -129,7 +130,7 @@ const PoolAdd = ({
               <div
                 className={Style.PoolAddBoxPriceLeftTokenInfo}
                 onClick={() => {
-                  setOpenTokenModel(true);
+                  setOpenTokenModelTwo(true);
                 }}
               >
                 <p>
@@ -140,7 +141,7 @@ const PoolAdd = ({
                     height={20}
                   />
                 </p>
-                <p>WETH</p>
+                <p>{tokenTwo.name || "Select"}</p>
                 <p>
                   <Image
                     src={images.search}
@@ -172,7 +173,7 @@ const PoolAdd = ({
                   <div
                     className={Style.PoolAddBoxPriceLeftListItem}
                     key={i + 1}
-                    onClick={() => setActive(i + 1)}
+                    onClick={() => (setActive(i + 1), setFee(el.feeSystem))}
                   >
                     <div className={Style.PoolAddBoxPriceLeftListItemInfo}>
                       <p>{el.fee}</p>
@@ -204,10 +205,15 @@ const PoolAdd = ({
               <h4>Deposit Amount</h4>
 
               <div className={Style.PoolAddBoxDepositBox}>
-                <input type="text" placeholder="0" />
+                <input
+                  type="number"
+                  placeholder={tokenOne.tokenBalance.slice(0, 9)}
+                  onChange={(e) => setTokenAmountOne(e.target.value)}
+                />
                 <div className={Style.PoolAddBoxDepositBoxInput}>
                   <p>
-                    <small>UNI</small>
+                    <small>{tokenOne.name || "Ether"}</small> {""}{" "}
+                    {tokenOne.symbol || "ETH"}
                   </p>
                   <p className={Style.PoolAddBoxDepositBoxInput}>
                     Balance: 0.00
@@ -216,10 +222,15 @@ const PoolAdd = ({
               </div>
 
               <div className={Style.PoolAddBoxDepositBox}>
-                <input type="text" placeholder="0" />
+                <input
+                  type="number"
+                  placeholder={tokenTwo.tokenBalance.slice(0, 9)}
+                  onChange={(e) => setTokenAmountTwo(e.target.value)}
+                />
                 <div className={Style.PoolAddBoxDepositBoxInput}>
                   <p>
-                    <small>UNI</small>
+                    <small>{tokenTwo.name || "Ether"}</small> {""}{" "}
+                    {tokenTwo.symbol || "Select"}
                   </p>
                   <p className={Style.PoolAddBoxDepositBoxInput}>
                     Balance: 0.00
@@ -235,7 +246,8 @@ const PoolAdd = ({
             {/* //UPPER RIGHT WALLET DETAILS SECTION */}
             <div className={Style.PoolAddBoxPriceRightBox}>
               <p className={Style.PoolAddBoxPriceRightBoxPara}>
-                Current Price: 41.1494 TestV4 per WETH
+                Current Price: 41.1494 {tokenOne.name || "ETH"} per{" "}
+                {tokenTwo.name || "Select"}
               </p>
               <Image src={images.wallet} alt="wallet" height={80} width={80} />
               <h3>Your position will appear here.</h3>
@@ -246,47 +258,87 @@ const PoolAdd = ({
               {/* //MIN */}
               <div className={Style.PoolAddBoxPriceRightRangeBox}>
                 <p>Min Price</p>
-                <p
+                <input
+                  type="number"
+                  placeholder="0.000"
+                  min="0.00"
+                  step="0.001"
                   className={Style.PoolAddBoxPriceRightRangeBoxPara}
-                  onClick={(e) => minPriceRange(e.target.innerText)}
-                >
-                  <small>-</small> {minPrice} <small>+</small>
+                  onChange={(e) => setMinPrice(e.target.value)}
+                />
+                <p>
+                  {tokenOne.name || "ETH"} per {tokenTwo.name || "Select"}
                 </p>
-                <p>TestV4 per WETH</p>
               </div>
               {/* //MAX */}
               <div className={Style.PoolAddBoxPriceRightRangeBox}>
                 <p>Max Price</p>
-                <p
+                <input
+                  type="number"
+                  placeholder="0.000"
+                  min="0.00"
+                  step="0.001"
                   className={Style.PoolAddBoxPriceRightRangeBoxPara}
-                  onClick={(e) => minPriceRange(e.target.innerText)}
-                >
-                  <small>-</small> {maxPrice} <small>+</small>
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                />
+                <p>
+                  {tokenOne.name || "ETH"} per {tokenTwo.name || "Select"}
                 </p>
-                <p>TestV4 per WETH</p>
               </div>
             </div>
 
             {/* BUTTONS - LOWER RIGHT SECTION */}
-            <div className={Style.PoolAddBoxPriceRightButton}>
-              <button>Full Range</button>
-            </div>
-
             <div className={Style.PoolAddBoxPriceRightAmount}>
-              <button>Enter Amount</button>
+              <button
+                onClick={() =>
+                  createLiquidityAndPool({
+                    tokenAddress0: tokenOne.tokenAddress.tokenAddress,
+                    tokenAddress1: tokenTwo.tokenAddress.tokenAddress,
+                    fee: fee,
+                    tokenPrice1: minPrice,
+                    tokenPrice2: maxPrice,
+                    slippage: slippage,
+                    deadline: deadline,
+                    tokenAmmountOne: tokenAmountOne,
+                    tokenAmmountTwo: tokenAmountTwo,
+                  })
+                }
+              >
+                Add Liquidity
+              </button>
             </div>
           </div>
         </div>
       </div>
       {openModel && (
         <div className={Style.token}>
-          <Token setOpenSetting={setOpenModel} />
+          <Token
+            setOpenSetting={setOpenModel}
+            setSlippage={setSlippage}
+            slippage={slippage}
+            deadline={deadline}
+            setDeadline={setDeadline}
+          />
         </div>
       )}
 
-      {openTokenModel && (
+      {openTokenModelOne && (
         <div className={Style.token}>
-          <SearchToken tokenData="hey" openToken={setOpenTokenModel} />
+          <SearchToken
+            tokenData={tokenData}
+            tokens={setTokenOne}
+            openToken={setOpenTokenModelOne}
+          />
+        </div>
+      )}
+
+      {openTokenModelTwo && (
+        <div className={Style.token}>
+          <SearchToken
+            tokenData={tokenData}
+            tokens={setTokenTwo}
+            openToken={setOpenTokenModelTwo}
+          />
         </div>
       )}
     </div>
