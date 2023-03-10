@@ -291,9 +291,9 @@ const PoolAdd = ({
             <div className={Style.PoolAddBoxPriceRightAmount}>
               <button
                 onClick={() =>
-                  createLiquidityAndPool({
-                    tokenAddress0: tokenOne.tokenAddress.tokenAddress,
-                    tokenAddress1: tokenTwo.tokenAddress.tokenAddress,
+                  createPoolAddLiquidity({
+                    tokenAddress0: tokenOne.tokenAddress,
+                    tokenAddress1: tokenTwo.tokenAddress,
                     fee: fee,
                     tokenPrice1: minPrice,
                     tokenPrice2: maxPrice,
