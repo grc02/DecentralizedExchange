@@ -210,3 +210,39 @@
   align-items: center;
   border: 1px solid #cff80b;
 }
+
+.PoolAddBoxPriceRightRangeBoxPara {
+  background-color: #cff80b;
+  border: 0;
+  outline: 0;
+  width: 80%;
+  height: 2rem;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 35em) {
+  .PoolAddBoxPrice {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .PoolAddBoxPriceLeftTokenInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #cff80b;
+    border-radius: 0.5rem;
+    color: #1e1e1e;
+    padding: 0 0.5rem;
+    font-weight: 700;
+  }
+
+  .token {
+    position: absolute;
+    background-color: #1e1e1e;
+    inset: 0% 0% 50% 0%;
+    display: flex;
+    border: 1px solid #cff80b;
+  }
+}
