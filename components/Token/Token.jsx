@@ -5,7 +5,13 @@ import Style from "./Token.module.css";
 import images from "../../assets";
 import { Toggle } from "../index";
 
-const Token = ({ setOpenSetting }) => {
+const Token = ({
+  setOpenSetting,
+  setSlippage,
+  slippage,
+  deadline,
+  setDeadline,
+}) => {
   return (
     <div className={Style.Token}>
       <div className={Style.TokenBox}>
@@ -21,17 +27,33 @@ const Token = ({ setOpenSetting }) => {
         </div>
         <p className={Style.TokenBoxParagraph}>
           Slippage tolerance
-          <Image src={images.question} alt="lock" width={30} height={30} />
+          <Image
+            src={images.question}
+            alt="lock"
+            width={25}
+            height={25}
+            onMouseOver={() => {}}
+          />
         </p>
 
         <div className={Style.TokenBoxInput}>
           <button>Auto</button>
-          <input type="text" placeholder="0.1%" />
+          <input
+            type="text"
+            placeholder={slippage}
+            onChange={(e) => setSlippage(e.target.value)}
+          />
         </div>
 
         <p className={Style.TokenBoxParagraph}>
           Transaction deadline
-          <Image src={images.question} alt="lock" width={30} height={30} />
+          <Image
+            src={images.question}
+            alt="lock"
+            width={25}
+            height={25}
+            onMouseOver={() => {}}
+          />
         </p>
 
         <div className={Style.TokenBoxToggle}>
@@ -42,7 +64,11 @@ const Token = ({ setOpenSetting }) => {
 
         <div className={Style.TokenBoxInput}>
           <button>Minutes</button>
-          <input type="text" placeholder="10" />
+          <input
+            type="text"
+            placeholder={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
         </div>
       </div>
     </div>
