@@ -18,7 +18,7 @@ const PoolConnect = ({ account, setClosePool, getAllLiquidity }) => {
           <p onClick={() => setClosePool(true)}>+ New Position</p>
         </div>
 
-        {account ? (
+        {!account ? (
           <div className={Style.PoolConnectBoxMiddle}>
             <Image src={images.wallet} alt="wallet" height={80} width={80} />
             <p>Your active V3 liquidity positions will appear here</p>
