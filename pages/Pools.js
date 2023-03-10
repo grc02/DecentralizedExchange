@@ -15,7 +15,7 @@ const Pool = () => {
 
   return (
     <div className={Style.Pool}>
-      {account ? (
+      {closePool ? (
         <PoolAdd
           account={account}
           setClosePool={setClosePool}
